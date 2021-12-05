@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+ <h2>{{post.title }}</h2>
+ <h3>{{post.text}}</h3>
+ <h4>{{post.created_by}}</h4>
+ <h4>{{post.created_at}}</h4>
+ {% if user.is_authenticated %}
+ <h2><a href={{post.get_absolute_url}}edit> Редактировать пост </a></h2>
+ <h2><a href={{post.get_absolute_url}}delete> Удалить пост </a></h2>  
+ <h2><a href=post/myposts> Список моих постов </a></h2>
+ <h2><a href='/'> Список всех постов </a></h2>
+ {% endif %}
+{% endblock %} 	
+
+
+

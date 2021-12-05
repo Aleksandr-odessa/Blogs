@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
 import django.core.exceptions
+from django.urls import reverse
+
 
 
 # Create your models here.
@@ -17,5 +19,8 @@ class Post(models.Model):
 		self.slug = slugify(self.title, allow_unicode=True)
 		return super(Post, self).save(*args, **kwargs)
 
+	def __str__(self):
+		return self.title
+
 	def get_absolute_url(self):
-		return reverse('post_detail')
+		return reverse('post_detail', kwargs = {'slug':self.slug})
