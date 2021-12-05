@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Services of short Links </title>
+                {% load static %}
+       <link rel = "stylesheet" href = "{% static 'styles.css' %}"/ >
+        <title>Blogs</title>
     </head>
         <body>
             <div>
-                {% block content %} {% endblock %} 
+                {% block content %} 
+                {% endblock %} 
             </div> 
         </body>
 </html>
