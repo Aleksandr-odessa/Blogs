@@ -8,7 +8,7 @@
  {% if user.is_authenticated %}
  <h2><a href={{post.get_absolute_url}}edit> Редактировать пост </a></h2>
  <h2><a href={{post.get_absolute_url}}delete> Удалить пост </a></h2>  
- <h2><a href=post/myposts> Список моих постов </a></h2>
+<!--  <h2><a href=/myposts> Список моих постов </a></h2> -->
  <h2><a href='/'> Список всех постов </a></h2>
  {% endif %}
 {% endblock %} 	

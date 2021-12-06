@@ -22,6 +22,7 @@ import django.contrib.auth.views as auth_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', List_Post.as_view()),
+    #path('post/myposts/', My_List_Post.as_view()),
     path('post/myposts/', My_List_View),
     path('register/', create_user),
     path('accounts/login/', auth_views.LoginView.as_view(template_name='login.html')),

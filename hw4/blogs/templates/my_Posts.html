@@ -5,22 +5,16 @@
         <h1> <a href=/logout/> выход </a></h1>  
   </header>
  <h2><a href='/'> Список всех постов </a></h2>
-
-
-  {% if title %}
-  
-  <p>{{ request.user }}</p>
-  {% for post in context %}
-    <div>
-
+  <div>{% if title %}
+  {% for post in title reversed %}  
+  <p>{{user.username}}</p>
       <h2><a href={{post.get_absolute_url}}>{{ post.title }}</a></h2>
       <p>{{post.created_by}}</p>
-<
+
       <p>{{ post.created_at }}</p>
     </div>
   {% endfor %}
- {% endif %}
-
+  {% endif %}
 {% endblock content %}
 
 

@@ -8,6 +8,9 @@ from .models import Post
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
+
+
+
 def create_user(request):
 	form = UserCreationForm(request.POST or None)
 	if form.is_bound and form.is_valid():
@@ -24,10 +27,10 @@ class Creation_Post( LoginRequiredMixin,CreateView):
 
 	def form_valid(self, form):
 		form.instance.created_by = self.request.user
-		return super(CreationPost, self).form_valid(form)
+		return super(Creation_Post, self).form_valid(form)
 
 
-class Update_Post(UpdateView):
+class Update_Post(LoginRequiredMixin,UpdateView):
 	model = Post
 	fields = ['title','text']
 	template_name = 'update.html'
@@ -41,10 +44,12 @@ class My_List_Post(ListView):
 	model = Post
 	template_name = 'my_Posts.html'
 
+	def get_queryset(request):
+		return Post.objects.filter(created_by=user_user)
+
 
 def My_List_View(request):
-	context = {'title': Post.objects.filter(created_by=request.user)}
-	print(context[Post])
+	context= {'title': Post.objects.filter(created_by=request.user)}
 	return render(request, 'my_Posts.html', context)
 
 
@@ -52,7 +57,8 @@ class Detail_Post(DetailView):
 	model = Post
 	template_name = 'detail.html'
 
-class Delete_Post(DeleteView):
+
+class Delete_Post(LoginRequiredMixin,DeleteView):
 	model = Post
 	template_name = 'delete.html'
 	success_url = '/'
